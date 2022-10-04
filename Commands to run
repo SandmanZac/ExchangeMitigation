@@ -1,0 +1,8 @@
+# Get the current status of RemotePowerShell status of all mailboxes
+get-user | select UserPrincipalName,RemotePowerShellEnabled | export-csv -path c:\user-status-before.csv
+
+# Disable Remote PowerShell for all users
+get-user | set-user -remotePowerShellEnabled $false
+
+# Enable Remote PowerShell for individuals
+set-user -identity USER@DOMAIN -remotePowerShellEnabled $true
